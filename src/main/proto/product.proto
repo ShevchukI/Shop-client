@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+package shop;
+
+option java_multiple_files = true;
+option java_package = "com.shop";
+option java_outer_classname = "ProductProto";
+
+
+service ProductService{
+  rpc takeProduct (ProductRequest) returns (ProductResponse) {}
+  rpc takeProductList (ProductListRequest) returns (stream ProductResponse){}
+  rpc takeCategories (CategoryRequest) returns (stream CategoryResponse){}
+
+  rpc takeClientList(ClientListRequest) returns (stream ClientResponse){}
+  rpc saveClient(SaveClientRequest) returns (SaveResponse){}
+  rpc buy(BuyRequest) returns (BuyResponse){}
+}
+
+
+message ProductRequest {
+  string url=1;
+}
+
+message ProductResponse {
+  bytes product = 1;
+}
+
+message ProductListRequest {
+
+}
+
+message CategoryRequest {
+}
+
+message CategoryResponse {
+    bytes category=1;
+}
+
+message ClientListRequest {
+}
+
+message ClientResponse {
+  bytes client=1;
+}
+
+message SaveResponse {
+}
+
+message SaveClientRequest {
+  bytes client = 1;
+}
+
+message BuyRequest {
+  bytes check=1;
+}
+
+message BuyResponse {
+}
